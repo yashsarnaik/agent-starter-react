@@ -123,3 +123,34 @@ export function getSandboxTokenSource(appConfig: AppConfig) {
     }
   });
 }
+
+/**
+ * Get a token source for a local LiveKit session
+ * @param appConfig - The app configuration
+ * @returns A token source for a local LiveKit session
+ */
+export function getLocalTokenSource(appConfig: AppConfig) {
+  return TokenSource.custom(async () => {
+    const roomConfig = appConfig.agentName
+      ? {
+          agents: [{ agent_name: appConfig.agentName }],
+        }
+      : undefined;
+
+    try {
+      const res = await fetch('/api/token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          room_config: roomConfig,
+        }),
+      });
+      return await res.json();
+    } catch (error) {
+      console.error('Error fetching connection details:', error);
+      throw new Error('Error fetching connection details!');
+    }
+  });
+}
