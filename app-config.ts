@@ -33,9 +33,9 @@ export interface AppConfig {
 }
 
 export const APP_CONFIG_DEFAULTS: AppConfig = {
-  companyName: 'LiveKit',
-  pageTitle: 'LiveKit Voice Agent',
-  pageDescription: 'A voice agent built with LiveKit',
+  companyName: 'Clinical Trac™',
+  pageTitle: 'Clinical Trac™ AI Voice Agent',
+  pageDescription: 'Real-Time Voice Agent built for Clinical Trac™',
 
   supportsChatInput: true,
   supportsVideoInput: true,
